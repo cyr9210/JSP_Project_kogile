@@ -38,7 +38,7 @@ public class InviteListDao {
 		try {
 			list3 = sqlSession.getMapper(InviteListMapper.class).inviteList(pjt_no);
 			list4 = sqlSession.getMapper(InviteListMapper.class).inviteList2(pjt_no);
-		
+			
 			list3.addAll(list4);
 			
 			System.out.println("dao list" + list3);
@@ -54,6 +54,7 @@ public class InviteListDao {
 		SqlSession sqlSession = getsql().openSession();
 		try{
 			re = sqlSession.getMapper(InviteListMapper.class).deleteInviteList(list);
+			System.out.println("delete re°ª : " + re);
 			if(re>0){
 				sqlSession.commit();
 			}else{

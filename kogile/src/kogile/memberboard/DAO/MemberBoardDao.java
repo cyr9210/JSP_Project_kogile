@@ -8,9 +8,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import kogile.invitelist.Service.InviteList;
 import kogile.memberboard.Mapper.MemberBoardMapper;
 import kogile.memberboard.Service.MemberBoard;
 import kogile.memberboard.Service.MemberSearch;
+import kogile.notice.Service.Notice;
 
 public class MemberBoardDao {
 	private static MemberBoardDao dao = new MemberBoardDao();
@@ -32,21 +34,25 @@ public class MemberBoardDao {
 	}
 	
 	public int insertMemberBoard(MemberBoard board){
-		int re = -1;
+
+		int re1 = -1;
+
 		SqlSession sqlSession = getSql().openSession();
 		try {
-			re = sqlSession.getMapper(MemberBoardMapper.class).insertMemberBoard(board);
-			if(re>0){
+			re1 = sqlSession.getMapper(MemberBoardMapper.class).insertMemberBoard(board);
+			System.out.println("insertmemberboard re1 값 : " + re1); // 1이 떠야함.
+			if(re1>0){
 				sqlSession.commit();
 			}else{
 				sqlSession.rollback();
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			sqlSession.close();
 		}
-		return re;
+		return re1;
 	}
 	
 	public List<MemberBoard> memberBoard(MemberSearch search) {
@@ -68,7 +74,40 @@ public class MemberBoardDao {
 		return list;
 	}
 	
+	public InviteList selectInvite(int no){
+		
+		InviteList invite = null;
+		
+		SqlSession sqlSession = getSql().openSession();
+		try{
+			invite = sqlSession.getMapper(MemberBoardMapper.class).selectInvite(no);			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return invite;
+	}
+	
+	//insertNotice 김근열
+	public int insertNotice(Notice notice){
 
+		int re = -1;
+		SqlSession sqlSession = getSql().openSession();
+		try {
+			re = sqlSession.getMapper(MemberBoardMapper.class).insertNotice(notice);
+			System.out.println("re : " + re);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return re;
+	}
 	
 
 }

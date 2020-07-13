@@ -14,7 +14,15 @@ public class NoticeAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		NoticeDao dao = NoticeDao.getInstance();
 		
-		List<Notice> list5 = dao.notice();
+//		String str = request.getParameter("no");
+//		int no=0;
+//		if(str!=null) {
+//			no=Integer.parseInt(str);
+//		}
+		
+		int no = 5;
+		
+		List<Notice> list5 = dao.notice(no);
 		System.out.println("action list5 : " + list5);
 		
 		request.setAttribute("list5", list5);

@@ -25,26 +25,29 @@
 <body>
 	
 	  <form action="memberBoardAction.me" method = "post">
-		초대 <input type="text" name="search" size="25" id="autocomplete" placeholder="초대 할 회원의 메일주소 입력"></input>
-		<input type="submit"value="검색" ></input>
+		사람 검색 :  <input type="text" name="search" size="25" id="autocomplete" placeholder="초대 할 회원의 메일주소 입력"></input>
+		<input type="submit"value="검색 " ></input>
 	  </form>
 	<br>
-	
+	<table class="table-striped"width="500" border="0" cellpadding="0" cellspacing="0">
 	<c:forEach var="memberBoard" items="${list}">
 	<form action="insertMemberBoardAction.me" method="post">
-			<input type="hidden" name="pjt_no" value=2>
 			<!-- 임의의값 -->
 			<input type="hidden" name="no" value=${memberBoard.no }>
 			<input type="hidden" name="name" value=${memberBoard.name }>
-			${memberBoard.name } ||
 			<input type="hidden" name="mail" value=${memberBoard.mail }>
-			${memberBoard.mail }		
-		<input type="submit" value="초대" onclick="return yesNo()">
+			<tr>
+				<td>${memberBoard.name }</td>
+				<td>${memberBoard.mail }
+				
+			
+		<input type="submit" value="초대 " onclick="return yesNo()">	</td>
+			</tr>		
 		</form>
 	</c:forEach>
+		</table>
+
 		<br>
-	
-	
 	
 </body>
 </html>

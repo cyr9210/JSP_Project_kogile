@@ -8,15 +8,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Insert title here</title>
+ <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 	
-	<h3>알람리스트</h3>
-	<table width="500" border="1" cellpadding="0" cellspacing="0">
-		<tr>
-			<td>내용</td>
-			<td>시간</td>
-		</tr>
+	<table class="table-striped"width="500" border="1" cellpadding="0" cellspacing="0">
+
 		<c:forEach var="notice" items="${list5}">
 			<tr>
 				<td>${notice.contents}</td>
